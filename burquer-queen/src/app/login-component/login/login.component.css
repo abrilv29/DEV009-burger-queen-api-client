@@ -1,0 +1,109 @@
+.content-login{
+    /*width: 350px;
+	min-height: 50vh;*/
+    width: 350px;
+	height: 550px;
+	background:var(--color-content);
+	overflow: hidden;
+    margin: 30px auto;
+    border-radius: 20px;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+.content-logo{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin: 10px auto;
+}
+img{
+    width: 80%;
+    height: 80%;
+}
+.content-circule{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+}
+.circule{
+    background: var(--color-primary);
+    width: 90px;
+    height: 100px;
+    border-radius: 100px 0px 0px 100px;
+}
+
+#chk{
+	display: none;
+}
+.login-next{
+    width: auto;
+    height: 360px;
+    border-radius: 20px;
+    background: var(--color-primary);
+    border-radius: 60% / 10%;
+	transform: translateY(-180px);
+	transition: .8s ease-in-out;
+    margin: 77px auto;
+}
+
+label{
+	color: var(--color-content);
+	font-size: 2em;
+	justify-content: center;
+	display: flex;
+	font-weight: bold;
+	cursor: pointer;
+	transition: .5s ease-in-out;
+}
+
+input{
+	width: 60%;
+	height: 54px;
+	background: var(--color-inputs);
+	justify-content: center;
+	display: flex;
+	margin: 20px auto;
+	padding: 10px;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+}
+
+#btn-login{
+	width: 60%;
+	height: 40px;
+	margin: 10px auto;
+	justify-content: center;
+	display: block;
+	color: var(--color-text);
+	background: var(--color-buttons);
+	font-size: 1em;
+	font-weight: bold;
+	margin-top: 20px;
+	outline: none;
+	border: none;
+	border-radius: 5px;
+	transition: .2s ease-in;
+	cursor: pointer;
+}
+#btn-login:hover{
+	background: var(--color-content);
+    border: 1.5px solid var(--color-buttons);
+    color: var(--color-buttons);
+}
+
+.login-next label{
+	color: var(--color-text);
+	transform: scale(.6);
+}
+
+#chk:checked ~ .login-next{
+	transform: translateY(22px);
+}
+#chk:checked ~ .login-next label{
+	transform: scale(1);	
+}
+#chk:checked ~ .content-logo img{
+	transform: scale(.9);
+}
