@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms'; 
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +13,7 @@ import { AgregarUsuariosComponent } from './admin-component/agregar-usuarios/agr
 import { AgregarProductosComponent } from './admin-component/agregar-productos/agregar-productos.component';
 import { PedidosPendientesComponent } from './chef-component/pedidos-pendientes/pedidos-pendientes.component';
 import { PedidosEntregadosComponent } from './chef-component/pedidos-entregados/pedidos-entregados.component';
+
 
 
 @NgModule({
@@ -27,7 +30,9 @@ import { PedidosEntregadosComponent } from './chef-component/pedidos-entregados/
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule 
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
