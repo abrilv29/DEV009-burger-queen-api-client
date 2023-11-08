@@ -1,20 +1,32 @@
 <main class="container-forms-login">
-<section class="content-login">
-    <input type="checkbox" id="chk" aria-hidden="true">
-    <div class="content-circule">
+    <section class="content-login">
+      <input type="checkbox" id="chk" aria-hidden="true">
+      <div class="content-circule">
         <span class="circule"></span>
-    </div>
+      </div>
   
-    <div class="content-logo"  for="chk">
+      <div class="content-logo" for="chk">
         <img src="../../../assets/logo-burguer.png" alt="logo">
-    </div>
-    <div class="login-next">
-        <form action="#">
-            <label for="chk" aria-hidden="true">Login</label>
-            <input type="email" name="email" placeholder="Email" required="">
-            <input type="password" name="pswd" placeholder="Password" required="">
-            <button id="btn-login">Login</button>
+      </div>
+      <div class="login-next">
+        <form [formGroup]="form" (submit)="login()">
+          <label for="chk" aria-hidden="true">Login</label>
+          <input type="email" id="email" formControlName="email" placeholder="Email">
+          <div *ngIf="form.get('email')?.hasError('required') && (form.get('email')?.dirty || form.get('email')?.touched)">
+            El correo electrónico es requerido.
+          </div>
+          <div *ngIf="form.get('email')?.hasError('email') && (form.get('email')?.dirty || form.get('email')?.touched)">
+            El correo electrónico no es válido.
+          </div>
+          <input type="password" id="password" formControlName="password" placeholder="Password">
+          <div *ngIf="form.get('password')?.hasError('required') && (form.get('password')?.dirty || form.get('password')?.touched)">
+            La contraseña es requerida.
+          </div>
+  
+          <button type="submit" id="btn-login">Login</button>
         </form>
-    </div>
-</section>
-</main>
+      </div>
+    </section>
+  </main>
+  
+  
