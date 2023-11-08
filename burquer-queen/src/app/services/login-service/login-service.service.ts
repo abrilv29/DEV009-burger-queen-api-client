@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { loginUser } from 'src/app/Interface/login.interface';
 
@@ -10,28 +10,30 @@ import { loginUser } from 'src/app/Interface/login.interface';
 export class LoginServiceService {
 
   private apiUrl = environment.apiUrl;
+  router: any;
 
   constructor(private http: HttpClient) {}
 
-  loginUsersCredential(email:string,password:string):Observable<loginUser>{
-    const credencials = {
+  loginUsersCredential(email: string, password: string): Observable<loginUser> {
+    const credentials = {
       email: email,
-      password:password
+      password: password
     };
-    return this.http.post<loginUser>(`${this.apiUrl}/login`,credencials);
+    return this.http.post<loginUser>(`${this.apiUrl}`, credentials).pipe(
+      tap((response: loginUser) => {
+        // Almacenar el token en el almacenamiento local.
+        sessionStorage.setItem('accessToken', response.accessToken);
+      })
+    );
   }
-
-  getUserRole(): string | null {
-    const userData = sessionStorage.getItem('user');
-    if (userData) {
-      const user = JSON.parse(userData);
-      return user.role; // Suponiendo que el rol del usuario está en una propiedad llamada "role" en los datos del usuario
-    }
-    return null;
+  logout() {
+    // Elimina la información de usuario almacenada en sessionStorage
+    sessionStorage.removeItem('user');
+    sessionStorage.removeItem('accessToken');
+    
+    // Redirige al usuario a la página de inicio de sesión u otra página de tu elección
+    this.router.navigate(['/login']); // Asegúrate de importar el servicio Router en tu componente
   }
-
-
-
-
+  
 }
 

@@ -47,13 +47,13 @@ img{
 }
 .login-next{
     width: auto;
-    height: 360px;
+    height: 400px;
     border-radius: 20px;
     background: var(--color-primary);
     border-radius: 60% / 10%;
-	transform: translateY(-180px);
-	transition: .8s ease-in-out;
-    margin: 77px auto;
+    transform: translateY(-215px);
+    transition: .8s ease-in-out;
+    margin: 72px auto;
 }
 
 label{
@@ -68,7 +68,7 @@ label{
 
 input{
 	width: 60%;
-	height: 54px;
+	height: 35px;
 	background: var(--color-inputs);
 	justify-content: center;
 	display: flex;
@@ -81,7 +81,7 @@ input{
 
 #btn-login{
 	width: 60%;
-	height: 40px;
+	height: 35px;
 	margin: 10px auto;
 	justify-content: center;
 	display: block;
@@ -115,4 +115,10 @@ input{
 }
 #chk:checked ~ .content-logo img{
 	transform: scale(.9);
+}
+.error-text{
+	font-size: .9rem;
+	color:var(--color-buttons);
+	text-align: center;
+	font-weight: 500;
 }
