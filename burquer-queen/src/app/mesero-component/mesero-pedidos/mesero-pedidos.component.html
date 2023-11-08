@@ -1,10 +1,14 @@
-<div class="d-flex align-items-start flex-column mb-2" style="height: 203px; background-color: #000;">
+
+
+<div class="d-flex align-items-start flex-column mb-2" style="height: 203px; background-size: cover; position: relative;">
    <div class="d-flex align-items-start flex-column" id="content-background">
-    <img src="../../../assets/banner-mesero.png" alt="banner-logo">
+      <img src="../../../assets/banner-mesero.png" alt="banner-mesero">
+
    </div>
-      <div class="overlay">
-         <div class="p-2">Texto</div>
-         <div class="icon-user"><i class="bi bi-person-circle"></i></div>
-         <div class="icon-sign-out"><i class="bi bi-box-arrow-in-right"></i></div>
-      </div>
+   <div class="overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-end">
+      <!-- Contenido superpuesto con íconos -->
+      <div class="icon-mesero"><i class="bi bi-person-circle"></i></div>
+      <div class="icon-sign-out"><i class="bi bi-box-arrow-in-right"></i></div>
+      <div class="p-2">Texto</div>
+   </div>
 </div>

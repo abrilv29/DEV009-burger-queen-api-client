@@ -10,41 +10,35 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  errorMessage!: string;
-  form: FormGroup; // Define un FormGroup para el formulario
-  email: string = ''; // Añade esta línea para mantener el valor del correo electrónico
-  password: string = ''; // Añade esta línea para mantener el valor de la contraseña
+  loginForm: FormGroup; // Debes construir un formulario FormGroup en tu componente.
 
-  constructor(
-    private fb: FormBuilder,
-    private loginService: LoginServiceService,
-    private router: Router
-  ) {
-    this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+  constructor(private formBuilder: FormBuilder, private loginService: LoginServiceService, private router: Router) {
+    this.loginForm = this.formBuilder.group({
+      email: ['', Validators.required], // Campo de correo electrónico
+      password: ['', Validators.required], // Campo de contraseña
     });
   }
 
+  errorMessage: string = '';
+  attrsToShowPassword = {
+    inputPasswordType: 'password',
+  };
+
   login() {
-    this.errorMessage = '';
-
-    const emailControl = this.form.get('email');
-
-    if (emailControl) { // Comprueba si emailControl no es nulo
-      if (emailControl.hasError('required') && (emailControl.dirty || emailControl.touched)) {
-        // El correo electrónico es requerido
-      }
+    if (this.loginForm.invalid) {
+      // Validación adicional, por ejemplo, mostrar un mensaje de error si los campos están vacíos.
+      this.errorMessage = 'Por favor, complete todos los campos.';
+      return;
     }
 
-    const credentials = {
-      email: this.email,
-      password: this.password
-    };
+    const emailControl = this.loginForm.get('email');
+    const passwordControl = this.loginForm.get('password');
 
+    if (emailControl && passwordControl) {
+      const email = emailControl.value;
+      const password = passwordControl.value;
 
-    this.loginService.loginUsersCredential(credentials.email, credentials.password)
-      .subscribe({
+      this.loginService.loginUsersCredential(email, password).subscribe({
         next: (response: loginUser) => {
           // Almacenar la información del usuario y el token en sessionStorage
           sessionStorage.setItem('user', JSON.stringify(response.user));
@@ -59,12 +53,22 @@ export class LoginComponent {
           } else if (userRole === 'chef') {
             this.router.navigate(['/chef-entregados']);
           } else {
-            // Manejar otros casos, como usuarios no autenticados o con roles desconocidos
+            this.router.navigate(['/login']);
           }
         },
         error: (error) => {
-          this.errorMessage = error.message; // Muestra el mensaje de error
+          if (error.error === 'No se puede encontrar el usuario') {
+            this.errorMessage = 'No se puede encontrar el usuario';
+          } else if (error.error === 'Constraseña incorrecta') {
+            this.errorMessage = 'contraseña correctamente';
+          }
         }
       });
-  }
-}
+
+      setTimeout(() => {
+        this.errorMessage = '';
+      }, 3000);
+    }
+
+  }//end
+}// end class
