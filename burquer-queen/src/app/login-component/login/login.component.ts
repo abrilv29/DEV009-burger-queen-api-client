@@ -12,7 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent {
   loginForm: FormGroup; // Debes construir un formulario FormGroup en tu componente.
 
-  constructor(private formBuilder: FormBuilder, private loginService: LoginServiceService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private LoginServiceService: LoginServiceService, private router: Router) {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required], // Campo de correo electrónico
       password: ['', Validators.required], // Campo de contraseña
@@ -38,7 +38,7 @@ export class LoginComponent {
       const email = emailControl.value;
       const password = passwordControl.value;
 
-      this.loginService.loginUsersCredential(email, password).subscribe({
+      this.LoginServiceService.loginUsersCredential(email, password).subscribe({
         next: (response: loginUser) => {
           // Almacenar la información del usuario y el token en sessionStorage
           sessionStorage.setItem('user', JSON.stringify(response.user));
