@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { loginUser } from 'src/app/Interface/login.interface';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,8 @@ import { loginUser } from 'src/app/Interface/login.interface';
 export class LoginServiceService {
 
   private apiUrl = environment.apiUrl;
-  router: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private router: Router) {}
 
   loginUsersCredential(email: string, password: string): Observable<loginUser> {
     const credentials = {
