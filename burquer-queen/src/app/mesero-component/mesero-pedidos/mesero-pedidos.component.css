@@ -34,3 +34,8 @@ img{
     font-size: 2rem;
     text-align: left;
 }
+
+#menu{
+    border: 2px solid var(--color-inputs);
+    border-radius: 2.5rem;
+}
