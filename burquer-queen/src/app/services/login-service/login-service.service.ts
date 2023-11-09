@@ -19,10 +19,11 @@ export class LoginServiceService {
       email: email,
       password: password
     };
-    return this.http.post<loginUser>(`${this.apiUrl}`, credentials).pipe(
+    return this.http.post<loginUser>(`${this.apiUrl}/login`, credentials).pipe(
       tap((response: loginUser) => {
         // Almacenar el token en el almacenamiento local.
         sessionStorage.setItem('accessToken', response.accessToken);
+        console.log(response.accessToken);
       })
     );
   }
