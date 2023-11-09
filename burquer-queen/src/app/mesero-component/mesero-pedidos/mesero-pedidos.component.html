@@ -16,16 +16,34 @@
 <div class="container text-center">
    <div class="row">
       <!-- CONTENEDOR MENU -->
-      <div class="col-6 col-md-4" id="menu">
+      <div class="col-lg-6" id="menu">
+           <!--MENU BUTTONS -->
          <div class="d-grid gap-2 d-md-block btn-menu">
-            <button class="btn btn-primary" type="button">Button</button>
-            <button class="btn btn-primary" type="button">Button</button>
+            <button class="btn btn-outline-secondary" (click)="selectedProduct = 'Lunch'; filterProducts()">Almuerzo</button>
+            <button class="btn btn-outline-secondary" (click)="selectedProduct = 'Breakfast'; filterProducts()">Desayuno</button>
+            <button class="btn btn-outline-secondary" (click)="selectedProduct = 'Beverages'; filterProducts()">Bebidas</button>
+            <button class="btn btn-outline-secondary" (click)="selectedProduct = 'Combos'; filterProducts()">Combos</button>
+            <button class="btn btn-outline-secondary" (click)="selectedProduct = 'Sides'; filterProducts()">Acompañamiento</button>
          </div>
+          <!--MENU CARDS -->
+         <div class="row">
+            <div class="col-md-4" *ngFor="let product of products">
+              <div class="card mb-4">
+                <img [src]="product.image" class="card-img-top" alt="Imagen del producto">
+                <div class="card-body">
+                  <h5 class="card-title">{{ product.name }}</h5>
+                  <p class="card-text">Precio: ${{ product.price }}</p>
+                  <button class="btn btn-success btn-warning add-btn"><i class="bi bi-plus"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
       </div>
 
       <!-- DETALLES DE LA COMPRA -->
 
-      <div class="col-md-8">
+      <div class="col-lg-6">
          <form>
             <fieldset>
                <div class="mb-3">
