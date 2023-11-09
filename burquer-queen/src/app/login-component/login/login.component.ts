@@ -41,8 +41,10 @@ export class LoginComponent {
       this.LoginServiceService.loginUsersCredential(email, password).subscribe({
         next: (response: loginUser) => {
           // Almacenar la información del usuario y el token en sessionStorage
+          
           sessionStorage.setItem('user', JSON.stringify(response.user));
           sessionStorage.setItem('accessToken', response.accessToken);
+          console.log(response);
 
           // Obtener el rol del usuario después de iniciar sesión
           const userRole = response.user.role;
