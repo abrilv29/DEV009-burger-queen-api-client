@@ -39,3 +39,43 @@ img{
     border: 2px solid var(--color-inputs);
     border-radius: 2.5rem;
 }
+.btn-menu{
+    margin: 10px;
+}
+.card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85%;
+}
+
+.card img{
+   width: 65%;
+   height: 65%;
+   padding:10px;
+}
+.add-btn{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+.add-btn i{
+    color:var(--color-text);
+    font-size: 1.5rem;
+  
+}
+
+.card-title{
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-cards-titles);
+}
+
+.card-text{
+    font-size: 1rem;
+    font-weight: 600;
+    color:var(--color-cards-titles);
+}

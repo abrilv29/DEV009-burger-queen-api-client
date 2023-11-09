@@ -25,12 +25,20 @@
             <button class="btn btn-outline-secondary" (click)="selectedProduct = 'Combos'; filterProducts()">Combos</button>
             <button class="btn btn-outline-secondary" (click)="selectedProduct = 'Sides'; filterProducts()">Acompañamiento</button>
          </div>
-         <ul>
-            <li *ngFor="let product of products">
-               <img [src]="product.image" alt="Imagen del producto"> 
-               {{ product.name }} - {{ product.price }}
-            </li>
-          </ul>
+          <!--MENU CARDS -->
+         <div class="row">
+            <div class="col-md-4" *ngFor="let product of products">
+              <div class="card mb-4">
+                <img [src]="product.image" class="card-img-top" alt="Imagen del producto">
+                <div class="card-body">
+                  <h5 class="card-title">{{ product.name }}</h5>
+                  <p class="card-text">Precio: ${{ product.price }}</p>
+                  <button class="btn btn-success btn-warning add-btn"><i class="bi bi-plus"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
       </div>
 
       <!-- DETALLES DE LA COMPRA -->
