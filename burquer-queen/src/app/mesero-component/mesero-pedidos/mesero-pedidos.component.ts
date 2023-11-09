@@ -1,5 +1,4 @@
-import { ConstantPool } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Product } from 'src/app/Interface/producto';
 import { MeseroServiceService } from 'src/app/services/mesero-service.service';
 
@@ -13,11 +12,6 @@ export class MeseroPedidosComponent {
   selectedProduct: string | null = null;
 
   constructor(public meseroService: MeseroServiceService) { }
-
-  ngOnInit(): void {
-
-    this.loadProduct();
-  }
 
   loadProduct() {
     this.meseroService.getProducts().subscribe(data => {
@@ -33,9 +27,9 @@ export class MeseroPedidosComponent {
         this.products = data;
       });
     }
-    /*else {
+    else {
       this.loadProduct(); // All products
-    }*/
+    }
   }
 
 }
