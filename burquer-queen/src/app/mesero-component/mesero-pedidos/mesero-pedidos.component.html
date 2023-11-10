@@ -120,10 +120,9 @@
                   <h4>Total: ${{ total.toFixed(2) }}</h4>
                </div>
                <!-- BOTONES DEL TICKET DE COMPRA -->
-
                <div class="container">
                   <div class="d-flex justify-content-between mt-4">
-                     <a href="ruta_para_ver_lista_de_pedidos" class="btn btn-primary">Ver Lista de Pedidos</a>
+                     <a class="btn btn-primary" (click)="redirectToMeseroOrdenes()">Ver Lista de Pedidos</a>
                      <button class="btn btn-success btn-sm" (click)="sendOrder()">Enviar Pedido</button>
                      <button class="btn btn-danger btn-sm" (click)="cancelOrder()">Cancelar</button>
                    </div>

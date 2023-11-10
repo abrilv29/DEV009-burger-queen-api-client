@@ -4,6 +4,7 @@ import { Product } from 'src/app/Interface/producto';
 import { MeseroServiceService } from 'src/app/services/mesero-service.service';
 import { MeseroOrdersService } from 'src/app/services/mesero-orders.service';
 import { Orders } from 'src/app/Interface/ordenes';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mesero-pedidos',
@@ -19,7 +20,7 @@ export class MeseroPedidosComponent {
   clienteNombre: string = '';
   numeroMesa: number | null = null;
 
-  constructor(private meseroService: MeseroServiceService, private  meseroOrdersService: MeseroOrdersService) { }
+  constructor(private meseroService: MeseroServiceService, private  meseroOrdersService: MeseroOrdersService ,private router: Router) { }
 
   loadProduct() {
     this.meseroService.getProducts().subscribe(data => {
@@ -150,6 +151,10 @@ export class MeseroPedidosComponent {
         this.numeroMesa = null;
       }
     });
+  }
+
+  redirectToMeseroOrdenes() {
+    this.router.navigate(['/mesero-ordenes']);
   }
 
 

@@ -1,1 +1,46 @@
-<p>mesero-ordenes works!</p>
+<div class="d-flex align-items-start flex-column mb-2"
+    style="height: 203px; background-size: cover; position: relative;">
+    <div class="d-flex align-items-start flex-column" id="content-background">
+        <img src="../../../assets/banner-mesero.png" alt="banner-mesero">
+
+        <div class="overlay">
+            <div class="parrafo">
+                <p class="title">Lista de ordenes</p>
+            </div>
+            <div class="icon-mesero">
+                <div class="icon-mesero"><i class="bi bi-person-circle"></i>
+                    <p class="parrafo-text">Mesero</p>
+                </div>
+                <div class="icon-mesero"><i class="bi bi-box-arrow-in-right"></i>
+                    <p class="parrafo-text">Salir</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a class="btn btn-redirect" [routerLink]="['/mesero-pedidos']"><i class="bi bi-arrow-left"></i></a>
+
+    <!-- TABLE PEDIDOS ORDERS -->
+    <div class="container mt-5">
+        <h2>Lista de Órdenes</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Mesa</th>
+                    <th>Estado</th>
+                    <th>Fecha de Entrada</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let order of orders">
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.client }}</td>
+                    <td>{{ order.tableNumber }}</td>
+                    <td>{{ order.status }}</td>
+                    <td>{{ order.dataEntry | date:'medium' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
