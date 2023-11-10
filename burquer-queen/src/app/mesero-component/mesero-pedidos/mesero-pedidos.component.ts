@@ -19,7 +19,7 @@ export class MeseroPedidosComponent {
   clienteNombre: string = '';
   numeroMesa: number | null = null;
 
-  constructor(public meseroService: MeseroServiceService, public meseroOrdersService: MeseroOrdersService) { }
+  constructor(private meseroService: MeseroServiceService, private  meseroOrdersService: MeseroOrdersService) { }
 
   loadProduct() {
     this.meseroService.getProducts().subscribe(data => {
