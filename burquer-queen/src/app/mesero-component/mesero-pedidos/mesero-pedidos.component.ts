@@ -95,10 +95,18 @@ export class MeseroPedidosComponent {
 
       this.meseroOrdersService.postOrder(order).subscribe({
         next: (response) => {
-          console.log('Orden creada con éxito:', response);
+          Swal.fire({
+            icon: 'success',
+            title: 'Orden creada con éxito',
+            showConfirmButton: false,
+            timer: 1500, // La ventana se cerrará automáticamente después de 1.5 segundos
+          });
+          
           this.cart = [];
           this.total = 0;
           this.loadOrders();
+          console.log('Orden creada con éxito:', response);
+
         },
         error: (error) => {
           console.error('Error al crear la orden:', error);
@@ -123,7 +131,7 @@ export class MeseroPedidosComponent {
     Swal.fire({
       icon: 'question',
       title: '¿Estás seguro?',
-      text: '¿Quieres cancelar el pedido?',
+      text: '¿Desea cancelar el pedido?',
       showCancelButton: true,
       confirmButtonText: 'Sí, cancelar',
       cancelButtonText: 'No, mantener',

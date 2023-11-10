@@ -28,12 +28,11 @@ export class MeseroOrdersService {
     console.log('accessToken', this.httpOptions.headers);
     return this.http.get<Orders[]>(`${this.apiUrl}/orders`, this.httpOptions);
   }
-
   postOrder(order: Orders): Observable<Orders[]> {
     console.log(order);
-    return this.http.post<Orders[]>(`${this.apiUrl}/orders`, this.httpOptions);
+    return this.http.post<Orders[]>(`${this.apiUrl}/orders`, order, this.httpOptions);
   }
-
+  
   deleteOrder(orderId: number): Observable<void> {
     console.log(orderId);
     return this.http.delete<void>(`${this.apiUrl}/${orderId}`, this.httpOptions);
