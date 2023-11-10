@@ -1,38 +1,61 @@
 #content-background{
     width: 100%;
-    min-height: 203px;
+    min-height: 215px;
 }
 img{
     width: 100%;
-    height: 203px;
+    height: 215px;
     background-size: cover;
     background-position: center center;
 }
 
 .overlay {
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    right: 20px; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 20px;
     bottom: 0;
     display: grid;
     gap: 10px;
-    grid-template-columns: 1fr;
-    align-items: center; 
+    grid-template-columns: 75% 25%; 
 }
 
-.icon-mesero{
-    justify-self: end;
+.parrafo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: end;
+    margin: 2rem;
 }
+
+.title{
+    color: var(--color-text);
+    font-size: 2rem;
+    padding: 2rem;
+}
+
+ .icon-mesero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end; 
+    padding: 4px;
+
+}
+
 .icon-mesero i{
     color:var(--color-text);
     font-size: 2.8rem;
   
 }
-.overlay .parrafo .title{
-    color: var(--color-text);
-    font-size: 2rem;
-    text-align: left;
+.parrafo-text{
+    font-size: 1rem;
+    text-align: end;
+    color:var(--color-text);
+}
+
+.container{
+    margin: 20px auto;
+
 }
 
 #menu{
@@ -40,7 +63,7 @@ img{
     border-radius: 2.5rem;
 }
 .btn-menu{
-    margin: 10px;
+    margin: 20px;
 }
 .card{
     display: flex;
@@ -55,8 +78,8 @@ img{
    padding:10px;
 }
 .add-btn{
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
