@@ -5,108 +5,128 @@
 
       <div class="overlay">
          <div class="parrafo">
-             <p class="title">Lista de pedidos</p>
+            <p class="title">Lista de pedidos</p>
          </div>
          <div class="icon-mesero">
-            <div class="icon-mesero"><i class="bi bi-person-circle"></i><p class="parrafo-text">Mesero</p></div>
-            <div class="icon-mesero"><i class="bi bi-box-arrow-in-right"></i><p class="parrafo-text">Salir</p></div>
+            <div class="icon-mesero"><i class="bi bi-person-circle"></i>
+               <p class="parrafo-text">Mesero</p>
+            </div>
+            <div class="icon-mesero"><i class="bi bi-box-arrow-in-right"></i>
+               <p class="parrafo-text">Salir</p>
+            </div>
          </div>
-     </div>
+      </div>
    </div>
 
 
-<div class="container text-center">
-   <div class="row">
-      <!-- CONTENEDOR MENU -->
-      <div class="col-lg-6" id="menu">
-           <!--MENU BUTTONS -->
-         <div class="d-grid gap-2 d-md-block btn-menu">
-            <button class="btn btn-outline-secondary" (click)="selectedProduct = 'Lunch'; filterProducts()">Almuerzo</button>
-            <button class="btn btn-outline-secondary" (click)="selectedProduct = 'Breakfast'; filterProducts()">Desayuno</button>
-            <button class="btn btn-outline-secondary" (click)="selectedProduct = 'Beverages'; filterProducts()">Bebidas</button>
-            <button class="btn btn-outline-secondary" (click)="selectedProduct = 'Combos'; filterProducts()">Combos</button>
-            <button class="btn btn-outline-secondary" (click)="selectedProduct = 'Sides'; filterProducts()">Acompañamiento</button>
-         </div>
-          <!--MENU CARDS -->
-         <div class="row">
-            <div class="col-md-4" *ngFor="let product of products">
-              <div class="card mb-4">
-                <img [src]="product.image" class="card-img-top" alt="Imagen del producto">
-                <div class="card-body">
-                  <h5 class="card-title">{{ product.name }}</h5>
-                  <p class="card-text">Precio: ${{ product.price }}</p>
-                  <button class="btn btn-success btn-warning add-btn"><i class="bi bi-plus"></i></button>
-                </div>
-              </div>
+   <div class="container text-center">
+      <div class="row">
+         <!-- CONTENEDOR MENU -->
+         <div class="col-lg-6" id="menu">
+            <!--MENU BUTTONS -->
+            <div class="d-grid gap-2 d-md-block btn-menu">
+               <button class="btn btn-outline-secondary"
+                  (click)="selectedProduct = 'Lunch'; filterProducts()">Almuerzo</button>
+               <button class="btn btn-outline-secondary"
+                  (click)="selectedProduct = 'Breakfast'; filterProducts()">Desayuno</button>
+               <button class="btn btn-outline-secondary"
+                  (click)="selectedProduct = 'Beverages'; filterProducts()">Bebidas</button>
+               <button class="btn btn-outline-secondary"
+                  (click)="selectedProduct = 'Combos'; filterProducts()">Combos</button>
+               <button class="btn btn-outline-secondary"
+                  (click)="selectedProduct = 'Sides'; filterProducts()">Acompañamiento</button>
             </div>
-          </div>
-          
-      </div>
-
-      <!-- DETALLES DE LA COMPRA -->
-
-      <div class="col-lg-6">
-         <form>
-            <fieldset>
-               <div class="mb-3">
-                  <label for="enabledTextInput" class="form-label">Nombre del cliente</label>
-                  <input type="text" id="enabledTextInput" class="form-control" placeholder="Nombre del cliente...">
+            <!--MENU CARDS -->
+            <div class="row">
+               <div class="col-md-4" *ngFor="let product of products">
+                  <div class="card mb-4">
+                     <img [src]="product.image" class="card-img-top" alt="Imagen del producto">
+                     <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">Precio: ${{ product.price }}</p>
+                        <button class="btn btn-success btn-warning add-btn" (click)="addProduct(product)">
+                           <i class="bi bi-plus"></i>
+                        </button>
+                     </div>
+                  </div>
                </div>
-               <div class="mb-3">
-                  <label for="enabledSelect" class="form-label">N° de mesa</label>
-                  <select id="enabledSelect" class="form-select">
+            </div>
+         </div>
+
+         <!-- DETALLES DE LA COMPRA -->
+
+         <div class="col-lg-6">
+            <form>
+               <fieldset>
+                 <div class="mb-3">
+                   <label for="enabledTextInput" class="form-label">Nombre del cliente</label>
+                   <input type="text" id="enabledTextInput" class="form-control" placeholder="Nombre del cliente..."
+                          [(ngModel)]="clienteNombre" name="clienteNombre">
+                 </div>
+                 <div class="mb-3">
+                   <label for="enabledSelect" class="form-label">N° de mesa</label>
+                   <select id="enabledSelect" class="form-select" [(ngModel)]="numeroMesa" name="numeroMesa">
                      <option>selecciona una opcion</option>
-                  </select>
+                     <option value="1">1</option>
+                     <option value="2">2</option>
+                     <option value="3">3</option>
+                     <option value="4">4</option>
+                     <option value="5">5</option>
+                     <option value="6">6</option>
+                     <!-- Agrega opciones para el número de mesa si es necesario -->
+                   </select>
+                 </div>
+               </fieldset>
+             </form>
+             
+             
+
+            <!--TICKET DE COMPRA-->
+            <div class="container">
+               <table class="table">
+                  <thead>
+                     <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Total</th>
+                        <th>Acciones</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr *ngFor="let product of cart">
+                        <td>
+                           <img [src]="product.image" alt="{{ product.name }}">
+                           {{ product.name }}
+                        </td>
+                        <td>${{ product.price.toFixed(2) }}</td>
+                        <td>
+                           <div class="input-group">
+                              <button class="btn btn-outline-secondary" (click)="decreaseQuantity(product)">-</button>
+                              <input type="text" class="form-control text-center"
+                                 [value]="selectedProductQuantity[product.id]" readonly>
+                              <button class="btn btn-outline-secondary" (click)="increaseQuantity(product)">+</button>
+                           </div>
+                        </td>
+                        <td>${{ (product.price * selectedProductQuantity[product.id]).toFixed(2) }}</td>
+                        <td>
+                           <button class="btn btn-danger" (click)="removeFromCart(product)"><i
+                                 class="bi bi-trash-fill"></i></button>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+               <div class="text-end">
+                  <h4>Total: ${{ total.toFixed(2) }}</h4>
                </div>
-            </fieldset>
-         </form>
+               <!-- BOTONES DEL TICKET DE COMPRA -->
 
-         <!--TICKET DE COMPRA-->
-         <div class="container">
-            <table class="table">
-               <thead>
-                  <tr>
-                     <th>Producto</th>
-                     <th>Precio</th>
-                     <th>Cantidad</th>
-                     <th>Total</th>
-                     <th>Acciones</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr>
-                     <td>
-                        <img src="imagen_producto1.jpg" alt="Producto 1">
-                        Producto 1
-                     </td>
-                     <td>$10.00</td>
-                     <td>
-                        <div class="input-group">
-                           <button class="btn btn-outline-secondary" type="button">-</button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-outline-secondary" type="button">+</button>
-                        </div>
-                     </td>
-                     <td>$10.00</td>
-                     <td>
-                        <button class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
-                     </td>
-                  </tr>
-               </tbody>
-            </table>
-            <div class="text-end">
-               <h4>Total: $50.00</h4>
+               <div class="container">
+                  <div class="d-flex justify-content-between mt-4">
+                     <a href="ruta_para_ver_lista_de_pedidos" class="btn btn-primary">Ver Lista de Pedidos</a>
+                     <button class="btn btn-success btn-sm" (click)="sendOrder()">Enviar Pedido</button>
+                     <button class="btn btn-danger btn-sm" (click)="cancelOrder()">Cancelar</button>
+                   </div>
+                  </div>
+               </div>
             </div>
-         </div>
-         <!-- BOTONES DEL TICKET DE COMPRA -->
-
-         <div class="container">
-            <div class="d-flex justify-content-between mt-4">
-               <a href="ruta_para_ver_lista_de_pedidos" class="btn btn-primary">Ver Lista de Pedidos</a>
-               <button class="btn btn-success">Enviar Pedido</button>
-               <button class="btn btn-danger">Cancelar</button>
-            </div>
-         </div>
-
-
-      </div>
